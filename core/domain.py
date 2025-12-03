@@ -1,6 +1,5 @@
-# core/domain.py
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Optional, List
 
 @dataclass(frozen=True)
 class Book:
@@ -21,3 +20,9 @@ class Rating:
     user_id: str
     book_id: str
     value: int
+
+@dataclass(frozen=True)
+class Review:
+    user_id: str
+    book_id: str
+    text: str

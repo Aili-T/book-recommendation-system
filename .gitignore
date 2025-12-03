@@ -1,0 +1,11 @@
+# 添加 .gitignore 到 Git
+git add .gitignore
+git commit -m "Add .gitignore"
+
+# 清理不需要的文件
+git rm --cached -r .idea/ 2>/dev/null || true
+git rm --cached -r __pycache__/ 2>/dev/null || true
+git rm --cached .DS_Store 2>/dev/null || true
+
+# 重新添加需要的文件
+git add app/ core/ tests/ main.py requirements.txt

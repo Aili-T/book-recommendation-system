@@ -1,9 +1,7 @@
-# core/recursion.py
 from dataclasses import dataclass
 from typing import List, Tuple, Optional
 
 
-# 在这个文件中直接定义Tag类
 @dataclass
 class Tag:
     id: str
@@ -12,7 +10,7 @@ class Tag:
     children: List['Tag'] = None
 
 
-# 只从domain导入Book，如果失败就在本地定义
+#Only import Book from domain, if it fails, define it locally
 try:
     from core.domain import Book
 except ImportError:
@@ -27,9 +25,8 @@ except ImportError:
 
 
 def find_all_tags(tag: Tag) -> List[Tag]:
-    """
-    递归查找所有子标签
-    """
+
+
     all_tags = [tag]
 
     if tag.children:
@@ -41,9 +38,7 @@ def find_all_tags(tag: Tag) -> List[Tag]:
 
 
 def find_tag_by_name(tag: Tag, name: str) -> Optional[Tag]:
-    """
-    根据名称递归查找标签
-    """
+
     if tag.name.lower() == name.lower():
         return tag
 
@@ -57,9 +52,7 @@ def find_tag_by_name(tag: Tag, name: str) -> Optional[Tag]:
 
 
 def print_tag_hierarchy(tag: Tag, level: int = 0) -> None:
-    """
-    递归打印标签层级结构
-    """
+
     indent = "  " * level
     print(f"{indent}- {tag.name}")
 
@@ -69,9 +62,7 @@ def print_tag_hierarchy(tag: Tag, level: int = 0) -> None:
 
 
 def find_related_books(book: Book, all_books: Tuple[Book, ...]) -> Tuple[Book, ...]:
-    """
-    查找相关书籍（基于相同类型）
-    """
+
     related = []
     for other_book in all_books:
         if other_book.id != book.id and other_book.genre == book.genre:
@@ -80,9 +71,7 @@ def find_related_books(book: Book, all_books: Tuple[Book, ...]) -> Tuple[Book, .
 
 
 def build_genre_hierarchy(books: Tuple[Book, ...]) -> Tag:
-    """
-    构建类型层次结构
-    """
+
     # 创建根标签
     root = Tag("1", "All Genres")
 

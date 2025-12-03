@@ -6,7 +6,7 @@ import json
 def filter_books_by_year(books: Tuple, min_year: int) -> Tuple:
     """Filter by publication year"""
     return tuple(filter(lambda b: b.year >= min_year, books))
-
+    #Filters books published after 2000 year
 
 def filter_books_by_genre(books: Tuple, genre: str) -> Tuple:
     """Filter by genre"""
@@ -16,7 +16,7 @@ def filter_books_by_genre(books: Tuple, genre: str) -> Tuple:
 def get_book_titles(books: Tuple) -> Tuple[str, ...]:
     """Extract book titles"""
     return tuple(map(lambda b: b.title, books))
-
+     #Extracts titles
 
 def get_average_rating(books: Tuple) -> float:
     """Calculate average rating"""
@@ -24,7 +24,7 @@ def get_average_rating(books: Tuple) -> float:
         return 0.0
     total = reduce(lambda acc, b: acc + b.rating, books, 0)
     return total / len(books)
-
+     #Calculates the average rating
 
 def add_rating(ratings: Tuple, new_rating) -> Tuple:
     """Add new rating"""

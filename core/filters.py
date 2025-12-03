@@ -3,10 +3,10 @@ from typing import Callable, Tuple, List
 from core.domain import Book
 
 
-# Lab 2: 闭包和Lambda表达式
+  #closure and Lambda
 
 def create_genre_filter(genre: str) -> Callable[[Book], bool]:
-    """创建类型过滤器的闭包"""
+    """Create a closure for the type filter"""
 
     def genre_filter(book: Book) -> bool:
         return book.genre.lower() == genre.lower()
@@ -15,7 +15,7 @@ def create_genre_filter(genre: str) -> Callable[[Book], bool]:
 
 
 def create_rating_filter(min_rating: float = 0.0, max_rating: float = 5.0) -> Callable[[Book], bool]:
-    """创建评分范围过滤器的闭包"""
+    """Create a closure for the rating range filter"""
 
     def rating_filter(book: Book) -> bool:
         return min_rating <= book.rating <= max_rating
@@ -24,7 +24,7 @@ def create_rating_filter(min_rating: float = 0.0, max_rating: float = 5.0) -> Ca
 
 
 def create_year_range_filter(start_year: int = 1900, end_year: int = 2025) -> Callable[[Book], bool]:
-    """创建年份范围过滤器的闭包"""
+    """Create a closure for the year range filter"""
 
     def year_filter(book: Book) -> bool:
         return start_year <= book.year <= end_year
@@ -33,7 +33,7 @@ def create_year_range_filter(start_year: int = 1900, end_year: int = 2025) -> Ca
 
 
 def create_author_filter(author_name: str) -> Callable[[Book], bool]:
-    """创建作者过滤器的闭包"""
+    """Create a closure for the author filter"""
 
     def author_filter(book: Book) -> bool:
         return author_name.lower() in book.author.lower()
@@ -41,9 +41,9 @@ def create_author_filter(author_name: str) -> Callable[[Book], bool]:
     return author_filter
 
 
-# 组合过滤器的高阶函数
+#Higher-order functions for combining filters
 def combine_filters(*filters: Callable[[Book], bool]) -> Callable[[Book], bool]:
-    """组合多个过滤器的闭包"""
+    """Closures that combine multiple filters"""
 
     def combined_filter(book: Book) -> bool:
         return all(filter_func(book) for filter_func in filters)
@@ -51,7 +51,7 @@ def combine_filters(*filters: Callable[[Book], bool]) -> Callable[[Book], bool]:
     return combined_filter
 
 
-# Lambda表达式创建的高级搜索
+# Configurable Closure
 def create_advanced_search(
         genres: List[str] = None,
         min_rating: float = 0,
@@ -60,7 +60,7 @@ def create_advanced_search(
         end_year: int = 2025,
         authors: List[str] = None
 ) -> Callable[[Tuple[Book, ...]], Tuple[Book, ...]]:
-    """创建高级搜索函数的闭包"""
+    """Creating a closure for an advanced search function"""
 
     filters = []
 
@@ -92,9 +92,8 @@ def create_advanced_search(
     return search_function
 
 
-# 配置器闭包：创建自定义推荐过滤器
+
 def create_recommendation_configurator(preferred_genres: List[str], min_rating: float = 4.0):
-    """创建推荐配置器的闭包"""
 
     def recommend_books(books: Tuple[Book, ...]) -> Tuple[Book, ...]:
         genre_filter = lambda book: any(genre.lower() == book.genre.lower() for genre in preferred_genres)
