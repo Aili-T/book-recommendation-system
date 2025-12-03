@@ -8,4 +8,13 @@ git rm --cached -r __pycache__/ 2>/dev/null || true
 git rm --cached .DS_Store 2>/dev/null || true
 
 # 重新添加需要的文件
-git add app/ core/ tests/ main.py requirements.txt
+git add app/ core/ tests/ main.py requirements.txt__pycache__/
+*.pyc
+.DS_Store
+**/.DS_Store
+.idea/
+__pycache__/
+*.pyc
+.DS_Store
+**/.DS_Store
+.idea/
